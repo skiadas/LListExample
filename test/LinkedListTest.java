@@ -11,8 +11,11 @@ class LinkedListTest {
 
     @Test
     void testAddElementToEmptyList() {
-        LinkedList<Object> listWithOneElement = new LinkedList<>();
-        listWithOneElement.add("aString");
+        String testString = "aString";
+        LinkedList<String> listWithOneElement = new LinkedList<>();
+        listWithOneElement.addToFront(testString);
         assertFalse(listWithOneElement.isEmpty());
+        String storedValue = listWithOneElement.front();
+        assertEquals(testString, storedValue);
     }
 }

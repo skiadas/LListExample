@@ -1,15 +1,23 @@
 public class LinkedList<T> {
-    Node head;
+    private Node head;
 
     public boolean isEmpty() {
         return head == null;
     }
 
-    public void add(T aString) {
-        head = new Node();
+    public void addToFront(T aString) {
+        head = new Node(aString);
+    }
+
+    public T front() {
+        return head.item;
     }
 
     private class Node {
+        T item;
 
+        Node(T item) {
+            this.item = item;
+        }
     }
 }
