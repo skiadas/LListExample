@@ -38,7 +38,13 @@ public class LinkedList<T> {
     }
 
     public int size() {
-        return 0;
+        int currentIndex = 0;
+        Node currentNode = this.head;
+        while (currentNode != null) {
+            currentIndex++;
+            currentNode = currentNode.next;
+        }
+        return currentIndex;
     }
 
     private class Node {
