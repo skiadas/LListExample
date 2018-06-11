@@ -23,6 +23,16 @@ public class LinkedList<T> {
         return currentNode.item;
     }
 
+    public T get(int i) {
+        Node currentNode = this.head;
+        while (i > 0) {
+            i--;
+            currentNode = currentNode.next;
+        }
+
+        return currentNode.item;
+    }
+
     private class Node {
         T item;
         Node next;

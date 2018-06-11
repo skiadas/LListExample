@@ -33,4 +33,17 @@ class LinkedListTest {
         assertEquals(firstToAdd, valueAtBack);
     }
 
+    @Test
+    void testCanGetArbitraryElement() {
+        String firstIn = "firstIn";
+        String secondIn = "secondIn";
+        String thirdIn = "thirdIn";
+        LinkedList<Object> listWithThreeElements = new LinkedList<>();
+        listWithThreeElements.addToFront(firstIn);
+        listWithThreeElements.addToFront(secondIn);
+        listWithThreeElements.addToFront(thirdIn);
+        assertEquals(firstIn, listWithThreeElements.get(2));
+        assertEquals(secondIn, listWithThreeElements.get(1));
+        assertEquals(thirdIn, listWithThreeElements.get(0));
+    }
 }
