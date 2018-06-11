@@ -40,6 +40,14 @@ class LinkedListTest {
         assertEquals(ELEMENT_2, listWithThreeElements.get(2));
     }
 
+    @Test
+    void testCanRemoveFromFront() {
+        LinkedList<String> aList = listWithThreeElements(ELEMENT_0, ELEMENT_1, ELEMENT_2);
+        aList.removeFront();
+        assertEquals(ELEMENT_1, aList.get(0));
+        assertEquals(ELEMENT_2, aList.get(1));
+    }
+
     private LinkedList<String> emptyList() {
         return new LinkedList<>();
     }

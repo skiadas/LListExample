@@ -33,6 +33,9 @@ public class LinkedList<T> {
         return currentNode.item;
     }
 
+    public void removeFront() {
+    }
+
     private class Node {
         T item;
         Node next;
