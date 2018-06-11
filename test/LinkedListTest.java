@@ -3,47 +3,62 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
+
+    private static final String ELEMENT_0 = "firstIn";
+    private static final String ELEMENT_1 = "secondIn";
+    private static final String ELEMENT_2 = "thirdIn";
+
     @Test
     void testCreateEmptyList() {
-        LinkedList<String> emptyList = new LinkedList<>();
+        LinkedList<String> emptyList = emptyList();
         assertTrue(emptyList.isEmpty());
     }
 
     @Test
     void testAddElementToEmptyList() {
-        String testString = "aString";
-        LinkedList<String> listWithOneElement = new LinkedList<>();
-        listWithOneElement.addToFront(testString);
+        LinkedList<String> listWithOneElement = listWithOneElement(ELEMENT_0);
         assertFalse(listWithOneElement.isEmpty());
         String storedValue = listWithOneElement.front();
-        assertEquals(testString, storedValue);
+        assertEquals(ELEMENT_0, storedValue);
     }
 
     @Test
     void testAddElementToNonEmptyList() {
-        String firstToAdd = "stringAtBack";
-        String secondToAdd = "stringAtFront";
-        LinkedList<String> listWithTwoElements = new LinkedList<>();
-        listWithTwoElements.addToFront(firstToAdd);
-        listWithTwoElements.addToFront(secondToAdd);
+        LinkedList<String> listWithTwoElements = listWithTwoElements(ELEMENT_0, ELEMENT_1);
         assertFalse(listWithTwoElements.isEmpty());
         String valueAtFront = listWithTwoElements.front();
-        assertEquals(secondToAdd, valueAtFront);
+        assertEquals(ELEMENT_0, valueAtFront);
         String valueAtBack = listWithTwoElements.back();
-        assertEquals(firstToAdd, valueAtBack);
+        assertEquals(ELEMENT_1, valueAtBack);
     }
 
     @Test
     void testCanGetArbitraryElement() {
-        String firstIn = "firstIn";
-        String secondIn = "secondIn";
-        String thirdIn = "thirdIn";
-        LinkedList<Object> listWithThreeElements = new LinkedList<>();
-        listWithThreeElements.addToFront(firstIn);
-        listWithThreeElements.addToFront(secondIn);
-        listWithThreeElements.addToFront(thirdIn);
-        assertEquals(firstIn, listWithThreeElements.get(2));
-        assertEquals(secondIn, listWithThreeElements.get(1));
-        assertEquals(thirdIn, listWithThreeElements.get(0));
+        LinkedList<String> listWithThreeElements = listWithThreeElements(ELEMENT_0, ELEMENT_1, ELEMENT_2);
+        assertEquals(ELEMENT_0, listWithThreeElements.get(0));
+        assertEquals(ELEMENT_1, listWithThreeElements.get(1));
+        assertEquals(ELEMENT_2, listWithThreeElements.get(2));
+    }
+
+    private LinkedList<String> emptyList() {
+        return new LinkedList<>();
+    }
+
+    private LinkedList<String> listWithOneElement(String element0) {
+        LinkedList<String> listWithOneElement = emptyList();
+        listWithOneElement.addToFront(element0);
+        return listWithOneElement;
+    }
+
+    private LinkedList<String> listWithTwoElements(String element0, String element1) {
+        LinkedList<String> listWithTwoElements = listWithOneElement(element1);
+        listWithTwoElements.addToFront(element0);
+        return listWithTwoElements;
+    }
+
+    private LinkedList<String> listWithThreeElements(String element0, String element1, String element2) {
+        LinkedList<String> listWithThreeElements = listWithTwoElements(element1, element2);
+        listWithThreeElements.addToFront(element0);
+        return listWithThreeElements;
     }
 }
