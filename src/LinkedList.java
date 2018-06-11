@@ -37,6 +37,10 @@ public class LinkedList<T> {
         this.head = this.head.next;
     }
 
+    public int size() {
+        return 0;
+    }
+
     private class Node {
         T item;
         Node next;

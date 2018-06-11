@@ -48,6 +48,15 @@ class LinkedListTest {
         assertEquals(ELEMENT_2, aList.get(1));
     }
 
+    @Test
+    void testSize() {
+        assertEquals(0, emptyList().size());
+        assertEquals(1, listWithOneElement(ELEMENT_0).size());
+        assertEquals(2, listWithTwoElements(ELEMENT_0, ELEMENT_1).size());
+        assertEquals(3, listWithThreeElements(ELEMENT_0, ELEMENT_1, ELEMENT_2).size());
+    }
+
+
     private LinkedList<String> emptyList() {
         return new LinkedList<>();
     }
