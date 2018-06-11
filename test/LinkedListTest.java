@@ -8,4 +8,11 @@ class LinkedListTest {
         LinkedList<String> emptyList = new LinkedList<>();
         assertTrue(emptyList.isEmpty());
     }
+
+    @Test
+    void testAddElementToEmptyList() {
+        LinkedList<Object> listWithOneElement = new LinkedList<>();
+        listWithOneElement.add("aString");
+        assertFalse(listWithOneElement.isEmpty());
+    }
 }
