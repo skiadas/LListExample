@@ -34,6 +34,7 @@ public class LinkedList<T> {
     }
 
     public void removeFront() {
+        this.head = this.head.next;
     }
 
     private class Node {
