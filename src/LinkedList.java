@@ -6,18 +6,30 @@ public class LinkedList<T> {
     }
 
     public void addToFront(T aString) {
-        head = new Node(aString);
+        Node newNode = new Node(aString);
+        newNode.next = this.head;
+        this.head = newNode;
     }
 
     public T front() {
         return head.item;
     }
 
+    public T back() {
+        Node currentNode = this.head;
+        while (currentNode.next != null) {
+            currentNode = currentNode.next;
+        }
+        return currentNode.item;
+    }
+
     private class Node {
         T item;
+        Node next;
 
         Node(T item) {
             this.item = item;
+            next = null;
         }
     }
 }

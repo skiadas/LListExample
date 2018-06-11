@@ -18,4 +18,19 @@ class LinkedListTest {
         String storedValue = listWithOneElement.front();
         assertEquals(testString, storedValue);
     }
+
+    @Test
+    void testAddElementToNonEmptyList() {
+        String firstToAdd = "stringAtBack";
+        String secondToAdd = "stringAtFront";
+        LinkedList<String> listWithTwoElements = new LinkedList<>();
+        listWithTwoElements.addToFront(firstToAdd);
+        listWithTwoElements.addToFront(secondToAdd);
+        assertFalse(listWithTwoElements.isEmpty());
+        String valueAtFront = listWithTwoElements.front();
+        assertEquals(secondToAdd, valueAtFront);
+        String valueAtBack = listWithTwoElements.back();
+        assertEquals(firstToAdd, valueAtBack);
+    }
+
 }
