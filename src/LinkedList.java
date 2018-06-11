@@ -37,6 +37,14 @@ public class LinkedList<T> {
         this.head = this.head.next;
     }
 
+    public void removeBack() {
+        Node currentNode = this.head;
+        while (currentNode.next.next != null) {
+            currentNode = currentNode.next;
+        }
+        currentNode.next = null;
+    }
+
     public int size() {
         int currentIndex = 0;
         Node currentNode = this.head;
