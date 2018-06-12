@@ -12,7 +12,15 @@ public class LinkedList<T> {
     }
 
     public void addToBack(T item) {
-
+        if (this.head == null) {
+            addToFront(item);
+            return;
+        }
+        Node lastNode = this.head;
+        while (lastNode.next != null) {
+            lastNode = lastNode.next;
+        }
+        lastNode.next = new Node(item);
     }
 
     public T front() {
