@@ -3,15 +3,15 @@ public class LinkedList<T> {
     private Node head = nullNode;
 
     public boolean isEmpty() {
-        return head.isNull();
+        return firstNode().isNull();
     }
 
     public void addToFront(T item) {
-        this.head = createNode(item, this.head);
+        this.head = createNode(item, firstNode());
     }
 
     public void addToBack(T item) {
-        if (this.head.isNull()) {
+        if (firstNode().isNull()) {
             addToFront(item);
         } else {
             lastNode().setNext(createNode(item));
@@ -19,7 +19,7 @@ public class LinkedList<T> {
     }
 
     public T front() {
-        return head.getItem();
+        return firstNode().getItem();
     }
 
     public T back() {
@@ -27,7 +27,7 @@ public class LinkedList<T> {
     }
 
     public T get(int i) {
-        Node node = this.head;
+        Node node = firstNode();
         while (i > 0) {
             i--;
             node = node.getNext();
@@ -37,7 +37,7 @@ public class LinkedList<T> {
     }
 
     public void removeFront() {
-        this.head = this.head.getNext();
+        this.head = firstNode().getNext();
     }
 
     public void removeBack() {
@@ -50,7 +50,7 @@ public class LinkedList<T> {
 
     public int size() {
         int count = 0;
-        Node node = this.head;
+        Node node = firstNode();
         while (node.notNull()) {
             count++;
             node = node.getNext();
@@ -59,11 +59,11 @@ public class LinkedList<T> {
     }
 
     private boolean isOneElementList() {
-        return this.head.isLast();
+        return firstNode().isLast();
     }
 
     private Node nextToLastNode() {
-        Node currentNode = this.head;
+        Node currentNode = firstNode();
         while (hasTwoNodesFollowing(currentNode)) {
             currentNode = currentNode.getNext();
         }
@@ -74,8 +74,12 @@ public class LinkedList<T> {
         return node.getNext().hasNext();
     }
 
+    private Node firstNode() {
+        return this.head;
+    }
+
     private Node lastNode() {
-        Node node = this.head;
+        Node node = firstNode();
         while (node.hasNext()) {
             node = node.getNext();
         }
