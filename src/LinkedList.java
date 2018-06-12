@@ -38,6 +38,10 @@ public class LinkedList<T> {
     }
 
     public void removeBack() {
+        if (this.head.next == null) {
+            this.head = null;
+            return;
+        }
         Node currentNode = this.head;
         while (currentNode.next.next != null) {
             currentNode = currentNode.next;
