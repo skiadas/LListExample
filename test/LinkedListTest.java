@@ -87,6 +87,15 @@ class LinkedListTest {
         assertEquals(ELEMENT_2, threeElemList.get(2));
     }
 
+    @Test
+    void testGettingOutOfBounds() {
+        LinkedList<String> emptyList = emptyList();
+        assertThrows(IndexOutOfBoundsException.class, () -> { emptyList.get(0); });
+        LinkedList<String> oneElemList = listWithOneElement(ELEMENT_0);
+        assertThrows(IndexOutOfBoundsException.class, () -> { oneElemList.get(1); });
+        assertThrows(IndexOutOfBoundsException.class, () -> { oneElemList.get(2); });
+    }
+
     private LinkedList<String> emptyList() {
         return new LinkedList<>();
     }

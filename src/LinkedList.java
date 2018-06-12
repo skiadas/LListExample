@@ -118,7 +118,7 @@ public class LinkedList<T> {
     private class NullNode extends Node {
         @Override
         T getItem() {
-            return null;
+            throw new IndexOutOfBoundsException();
         }
 
         @Override
