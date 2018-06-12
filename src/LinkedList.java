@@ -40,15 +40,11 @@ public class LinkedList<T> {
     }
 
     public void removeBack() {
-        if (isNull(this.head.next)) {
+        if (isOneElementList()) {
             this.head = null;
-            return;
+        } else {
+            nextToLastNode().next = null;
         }
-        Node currentNode = this.head;
-        while (notNull(currentNode.next.next)) {
-            currentNode = currentNode.next;
-        }
-        currentNode.next = null;
     }
 
     public int size() {
@@ -61,12 +57,36 @@ public class LinkedList<T> {
         return currentIndex;
     }
 
+    private boolean isOneElementList() {
+        return isLast(this.head);
+    }
+
+    private Node nextToLastNode() {
+        Node currentNode = this.head;
+        while (hasTwoNodesFollowing(currentNode)) {
+            currentNode = currentNode.next;
+        }
+        return currentNode;
+    }
+
+    private boolean hasTwoNodesFollowing(Node node) {
+        return hasNext(node.next);
+    }
+
     private Node lastNode() {
         Node node = this.head;
-        while (notNull(node.next)) {
+        while (hasNext(node)) {
             node = node.next;
         }
         return node;
+    }
+
+    private boolean hasNext(Node node) {
+        return notNull(node.next);
+    }
+
+    private boolean isLast(Node node) {
+        return isNull(node.next);
     }
 
     private boolean isNull(Node node) {
