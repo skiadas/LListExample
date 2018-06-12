@@ -5,8 +5,8 @@ public class LinkedList<T> {
         return isNull(head);
     }
 
-    public void addToFront(T aString) {
-        this.head = new Node(aString, this.head);
+    public void addToFront(T item) {
+        this.head = new Node(item, this.head);
     }
 
     public void addToBack(T item) {
@@ -26,13 +26,13 @@ public class LinkedList<T> {
     }
 
     public T get(int i) {
-        Node currentNode = this.head;
+        Node node = this.head;
         while (i > 0) {
             i--;
-            currentNode = currentNode.next;
+            node = node.next;
         }
 
-        return currentNode.item;
+        return node.item;
     }
 
     public void removeFront() {
@@ -48,13 +48,13 @@ public class LinkedList<T> {
     }
 
     public int size() {
-        int currentIndex = 0;
-        Node currentNode = this.head;
-        while (notNull(currentNode)) {
-            currentIndex++;
-            currentNode = currentNode.next;
+        int count = 0;
+        Node node = this.head;
+        while (notNull(node)) {
+            count++;
+            node = node.next;
         }
-        return currentIndex;
+        return count;
     }
 
     private boolean isOneElementList() {
