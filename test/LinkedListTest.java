@@ -94,6 +94,7 @@ class LinkedListTest {
         LinkedList<String> oneElemList = listWithOneElement(ELEMENT_0);
         assertThrows(IndexOutOfBoundsException.class, () -> { oneElemList.get(1); });
         assertThrows(IndexOutOfBoundsException.class, () -> { oneElemList.get(2); });
+        assertThrows(IndexOutOfBoundsException.class, () -> { oneElemList.get(-1); });
     }
 
     private LinkedList<String> emptyList() {
