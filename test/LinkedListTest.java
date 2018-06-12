@@ -50,10 +50,17 @@ class LinkedListTest {
 
     @Test
     void testCanRemoveFromBack() {
-        LinkedList<String> aList = listWithThreeElements(ELEMENT_0, ELEMENT_1, ELEMENT_2);
-        aList.removeBack();
-        assertEquals(ELEMENT_0, aList.get(0));
-        assertEquals(ELEMENT_1, aList.get(1));
+        LinkedList<String> threeElemList = listWithThreeElements(ELEMENT_0, ELEMENT_1, ELEMENT_2);
+        threeElemList.removeBack();
+        assertEquals(ELEMENT_0, threeElemList.get(0));
+        assertEquals(ELEMENT_1, threeElemList.get(1));
+        LinkedList<String> twoElemList = listWithTwoElements(ELEMENT_0, ELEMENT_1);
+        twoElemList.removeBack();
+        assertEquals(ELEMENT_0, threeElemList.get(0));
+        LinkedList<String> oneElemList = listWithOneElement(ELEMENT_0);
+        oneElemList.removeBack();
+        assertTrue(oneElemList.isEmpty());
+
     }
 
     @Test
