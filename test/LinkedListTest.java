@@ -71,6 +71,21 @@ class LinkedListTest {
         assertEquals(3, listWithThreeElements(ELEMENT_0, ELEMENT_1, ELEMENT_2).size());
     }
 
+    @Test
+    void testAddToBack() {
+        LinkedList<String> oneElemList = emptyList();
+        oneElemList.addToBack(ELEMENT_0);
+        assertEquals(ELEMENT_0, oneElemList.get(0));
+        LinkedList<String> twoElemList = listWithOneElement(ELEMENT_0);
+        twoElemList.addToBack(ELEMENT_1);
+        assertEquals(ELEMENT_0, twoElemList.get(0));
+        assertEquals(ELEMENT_1, twoElemList.get(1));
+        LinkedList<String> threeElemList = listWithTwoElements(ELEMENT_0, ELEMENT_1);
+        threeElemList.addToBack(ELEMENT_2);
+        assertEquals(ELEMENT_0, threeElemList.get(0));
+        assertEquals(ELEMENT_1, threeElemList.get(1));
+        assertEquals(ELEMENT_2, threeElemList.get(2));
+    }
 
     private LinkedList<String> emptyList() {
         return new LinkedList<>();

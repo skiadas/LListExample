@@ -11,6 +11,10 @@ public class LinkedList<T> {
         this.head = newNode;
     }
 
+    public void addToBack(T item) {
+
+    }
+
     public T front() {
         return head.item;
     }
