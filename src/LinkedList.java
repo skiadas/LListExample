@@ -1,19 +1,19 @@
 public class LinkedList<T> {
-    private Node head;
+    private Node<T> head;
 
     public boolean isEmpty() {
         return isNull(head);
     }
 
     public void addToFront(T item) {
-        this.head = new Node(item, this.head);
+        this.head = Node.create(item, this.head);
     }
 
     public void addToBack(T item) {
         if (isNull(this.head)) {
             addToFront(item);
         } else {
-            lastNode().next = new Node(item);
+            lastNode().next = Node.create(item);
         }
     }
 
@@ -26,7 +26,7 @@ public class LinkedList<T> {
     }
 
     public T get(int i) {
-        Node node = this.head;
+        Node<T> node = this.head;
         while (i > 0) {
             i--;
             node = node.next;
@@ -73,8 +73,8 @@ public class LinkedList<T> {
         return hasNext(node.next);
     }
 
-    private Node lastNode() {
-        Node node = this.head;
+    private Node<T> lastNode() {
+        Node<T> node = this.head;
         while (hasNext(node)) {
             node = node.next;
         }
@@ -97,18 +97,22 @@ public class LinkedList<T> {
         return !isNull(node);
     }
 
-    private class Node {
+    private static class Node<T> {
         T item;
         Node next;
 
-        Node(T item) {
-            this(item, null);
-        }
-
-        Node(T item, Node next) {
+        private Node(T item, Node next) {
             this.item = item;
             this.next = next;
         }
 
+        static <T> Node create(T item, Node next) {
+            return new Node(item, next);
+        }
+
+        static <T> Node create(T item) {
+            return Node.create(item, null);
+        }
     }
+
 }
