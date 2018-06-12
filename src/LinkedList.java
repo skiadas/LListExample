@@ -2,7 +2,7 @@ public class LinkedList<T> {
     private Node head;
 
     public boolean isEmpty() {
-        return head == null;
+        return isNull(head);
     }
 
     public void addToFront(T aString) {
@@ -12,12 +12,12 @@ public class LinkedList<T> {
     }
 
     public void addToBack(T item) {
-        if (this.head == null) {
+        if (isNull(this.head)) {
             addToFront(item);
             return;
         }
         Node lastNode = this.head;
-        while (lastNode.next != null) {
+        while (notNull(lastNode.next)) {
             lastNode = lastNode.next;
         }
         lastNode.next = new Node(item);
@@ -29,7 +29,7 @@ public class LinkedList<T> {
 
     public T back() {
         Node currentNode = this.head;
-        while (currentNode.next != null) {
+        while (notNull(currentNode.next)) {
             currentNode = currentNode.next;
         }
         return currentNode.item;
@@ -50,12 +50,12 @@ public class LinkedList<T> {
     }
 
     public void removeBack() {
-        if (this.head.next == null) {
+        if (isNull(this.head.next)) {
             this.head = null;
             return;
         }
         Node currentNode = this.head;
-        while (currentNode.next.next != null) {
+        while (notNull(currentNode.next.next)) {
             currentNode = currentNode.next;
         }
         currentNode.next = null;
@@ -64,11 +64,19 @@ public class LinkedList<T> {
     public int size() {
         int currentIndex = 0;
         Node currentNode = this.head;
-        while (currentNode != null) {
+        while (notNull(currentNode)) {
             currentIndex++;
             currentNode = currentNode.next;
         }
         return currentIndex;
+    }
+
+    private boolean isNull(Node node) {
+        return node == null;
+    }
+
+    private boolean notNull(Node node) {
+        return !isNull(node);
     }
 
     private class Node {
