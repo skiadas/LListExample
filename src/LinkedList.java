@@ -1,19 +1,19 @@
 public class LinkedList<T> {
-    private Node<T> head;
+    private Node head = nullNode();
 
     public boolean isEmpty() {
-        return isNull(head);
+        return head.isNull();
     }
 
     public void addToFront(T item) {
-        this.head = Node.create(item, this.head);
+        this.head = createNode(item, this.head);
     }
 
     public void addToBack(T item) {
-        if (isNull(this.head)) {
+        if (this.head.isNull()) {
             addToFront(item);
         } else {
-            lastNode().setNext(Node.create(item));
+            lastNode().setNext(createNode(item));
         }
     }
 
@@ -26,7 +26,7 @@ public class LinkedList<T> {
     }
 
     public T get(int i) {
-        Node<T> node = this.head;
+        Node node = this.head;
         while (i > 0) {
             i--;
             node = node.getNext();
@@ -41,16 +41,16 @@ public class LinkedList<T> {
 
     public void removeBack() {
         if (isOneElementList()) {
-            this.head = null;
+            this.head = nullNode();
         } else {
-            nextToLastNode().setNext(null);
+            nextToLastNode().setNext(nullNode());
         }
     }
 
     public int size() {
         int count = 0;
         Node node = this.head;
-        while (notNull(node)) {
+        while (node.notNull()) {
             count++;
             node = node.getNext();
         }
@@ -58,7 +58,7 @@ public class LinkedList<T> {
     }
 
     private boolean isOneElementList() {
-        return isLast(this.head);
+        return this.head.isLast();
     }
 
     private Node nextToLastNode() {
@@ -70,65 +70,130 @@ public class LinkedList<T> {
     }
 
     private boolean hasTwoNodesFollowing(Node node) {
-        return hasNext(node.getNext());
+        return node.getNext().hasNext();
     }
 
-    private Node<T> lastNode() {
-        Node<T> node = this.head;
-        while (hasNext(node)) {
+    private Node lastNode() {
+        Node node = this.head;
+        while (node.hasNext()) {
             node = node.getNext();
         }
         return node;
     }
 
-    private boolean hasNext(Node node) {
-        return notNull(node.getNext());
+    private Node createNode(T item, Node next) {
+        return new ItemNode(item, next);
     }
 
-    private boolean isLast(Node node) {
-        return isNull(node.getNext());
+    private Node createNode(T item) {
+        return createNode(item, nullNode());
     }
 
-    private boolean isNull(Node node) {
-        return node == null;
+    private Node nullNode() {
+        return new NullNode();
     }
 
-    private boolean notNull(Node node) {
-        return !isNull(node);
+    public abstract class Node {
+        abstract T getItem();
+        abstract void setItem(T item);
+
+        abstract Node getNext();
+        abstract void setNext(Node next);
+
+        protected abstract boolean hasNext();
+        protected abstract boolean isLast();
+        protected abstract boolean isNull();
+        protected abstract boolean notNull();
     }
 
-    private static class Node<T> {
+    private class NullNode extends Node {
+        @Override
+        T getItem() {
+            return null;
+        }
+
+        @Override
+        void setItem(T item) {}
+
+        @Override
+        Node getNext() {
+            return nullNode();
+        }
+
+        @Override
+        void setNext(Node next) {
+
+        }
+
+        @Override
+        protected boolean hasNext() {
+            return false;
+        }
+
+        @Override
+        protected boolean isLast() {
+            return false;
+        }
+
+        @Override
+        protected boolean isNull() {
+            return true;
+        }
+
+        @Override
+        protected boolean notNull() {
+            return false;
+        }
+    }
+
+    private class ItemNode extends Node {
         private T item;
+
         private Node next;
 
-        private Node(T item, Node next) {
+        private ItemNode(T item, Node next) {
             this.setItem(item);
             this.setNext(next);
         }
 
-        static <T> Node create(T item, Node next) {
-            return new Node(item, next);
-        }
-
-        static <T> Node create(T item) {
-            return Node.create(item, null);
-        }
-
+        @Override
         T getItem() {
             return item;
         }
 
+        @Override
         void setItem(T item) {
             this.item = item;
         }
 
+        @Override
         Node getNext() {
             return next;
         }
 
+        @Override
         void setNext(Node next) {
             this.next = next;
         }
-    }
 
+        @Override
+        protected boolean hasNext() {
+            return getNext().notNull();
+        }
+
+        @Override
+        protected boolean isLast() {
+            return getNext().isNull();
+        }
+
+        @Override
+        protected boolean isNull() {
+            return false;
+        }
+
+        @Override
+        protected boolean notNull() {
+            return true;
+        }
+    }
 }
