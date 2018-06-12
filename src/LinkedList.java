@@ -12,13 +12,9 @@ public class LinkedList<T> {
     public void addToBack(T item) {
         if (isNull(this.head)) {
             addToFront(item);
-            return;
+        } else {
+            lastNode().next = new Node(item);
         }
-        Node lastNode = this.head;
-        while (notNull(lastNode.next)) {
-            lastNode = lastNode.next;
-        }
-        lastNode.next = new Node(item);
     }
 
     public T front() {
@@ -26,11 +22,7 @@ public class LinkedList<T> {
     }
 
     public T back() {
-        Node currentNode = this.head;
-        while (notNull(currentNode.next)) {
-            currentNode = currentNode.next;
-        }
-        return currentNode.item;
+        return lastNode().item;
     }
 
     public T get(int i) {
@@ -67,6 +59,14 @@ public class LinkedList<T> {
             currentNode = currentNode.next;
         }
         return currentIndex;
+    }
+
+    private Node lastNode() {
+        Node node = this.head;
+        while (notNull(node.next)) {
+            node = node.next;
+        }
+        return node;
     }
 
     private boolean isNull(Node node) {
