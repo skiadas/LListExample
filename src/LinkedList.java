@@ -1,5 +1,6 @@
 public class LinkedList<T> {
-    private Node head = nullNode();
+    private final Node nullNode = new NullNode();
+    private Node head = nullNode;
 
     public boolean isEmpty() {
         return head.isNull();
@@ -90,7 +91,7 @@ public class LinkedList<T> {
     }
 
     private Node nullNode() {
-        return new NullNode();
+        return nullNode;
     }
 
     public abstract class Node {
