@@ -11,7 +11,7 @@ public class LinkedList<T> {
     }
 
     public void addToBack(T item) {
-        if (firstNode().isNull()) {
+        if (isEmpty()) {
             addToFront(item);
         } else {
             lastNode().setNext(createNode(item));
