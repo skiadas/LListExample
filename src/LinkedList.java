@@ -13,37 +13,37 @@ public class LinkedList<T> {
         if (isNull(this.head)) {
             addToFront(item);
         } else {
-            lastNode().next = Node.create(item);
+            lastNode().setNext(Node.create(item));
         }
     }
 
     public T front() {
-        return head.item;
+        return head.getItem();
     }
 
     public T back() {
-        return lastNode().item;
+        return lastNode().getItem();
     }
 
     public T get(int i) {
         Node<T> node = this.head;
         while (i > 0) {
             i--;
-            node = node.next;
+            node = node.getNext();
         }
 
-        return node.item;
+        return node.getItem();
     }
 
     public void removeFront() {
-        this.head = this.head.next;
+        this.head = this.head.getNext();
     }
 
     public void removeBack() {
         if (isOneElementList()) {
             this.head = null;
         } else {
-            nextToLastNode().next = null;
+            nextToLastNode().setNext(null);
         }
     }
 
@@ -52,7 +52,7 @@ public class LinkedList<T> {
         Node node = this.head;
         while (notNull(node)) {
             count++;
-            node = node.next;
+            node = node.getNext();
         }
         return count;
     }
@@ -64,29 +64,29 @@ public class LinkedList<T> {
     private Node nextToLastNode() {
         Node currentNode = this.head;
         while (hasTwoNodesFollowing(currentNode)) {
-            currentNode = currentNode.next;
+            currentNode = currentNode.getNext();
         }
         return currentNode;
     }
 
     private boolean hasTwoNodesFollowing(Node node) {
-        return hasNext(node.next);
+        return hasNext(node.getNext());
     }
 
     private Node<T> lastNode() {
         Node<T> node = this.head;
         while (hasNext(node)) {
-            node = node.next;
+            node = node.getNext();
         }
         return node;
     }
 
     private boolean hasNext(Node node) {
-        return notNull(node.next);
+        return notNull(node.getNext());
     }
 
     private boolean isLast(Node node) {
-        return isNull(node.next);
+        return isNull(node.getNext());
     }
 
     private boolean isNull(Node node) {
@@ -98,12 +98,12 @@ public class LinkedList<T> {
     }
 
     private static class Node<T> {
-        T item;
-        Node next;
+        private T item;
+        private Node next;
 
         private Node(T item, Node next) {
-            this.item = item;
-            this.next = next;
+            this.setItem(item);
+            this.setNext(next);
         }
 
         static <T> Node create(T item, Node next) {
@@ -112,6 +112,22 @@ public class LinkedList<T> {
 
         static <T> Node create(T item) {
             return Node.create(item, null);
+        }
+
+        T getItem() {
+            return item;
+        }
+
+        void setItem(T item) {
+            this.item = item;
+        }
+
+        Node getNext() {
+            return next;
+        }
+
+        void setNext(Node next) {
+            this.next = next;
         }
     }
 
