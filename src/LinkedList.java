@@ -7,7 +7,7 @@ public class LinkedList<T> {
     }
 
     public void addToFront(T item) {
-        this.head = createNode(item, firstNode());
+        setHead(createNode(item, firstNode()));
     }
 
     public void addToBack(T item) {
@@ -37,12 +37,12 @@ public class LinkedList<T> {
     }
 
     public void removeFront() {
-        this.head = firstNode().getNext();
+        setHead(firstNode().getNext());
     }
 
     public void removeBack() {
         if (isOneElementList()) {
-            this.head = nullNode();
+            setHead(nullNode());
         } else {
             nextToLastNode().setNext(nullNode());
         }
@@ -72,6 +72,10 @@ public class LinkedList<T> {
 
     private boolean hasTwoNodesFollowing(Node node) {
         return node.getNext().hasNext();
+    }
+
+    private void setHead(Node node) {
+        this.head = node;
     }
 
     private Node firstNode() {
