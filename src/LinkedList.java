@@ -6,9 +6,7 @@ public class LinkedList<T> {
     }
 
     public void addToFront(T aString) {
-        Node newNode = new Node(aString);
-        newNode.next = this.head;
-        this.head = newNode;
+        this.head = new Node(aString, this.head);
     }
 
     public void addToBack(T item) {
@@ -84,8 +82,13 @@ public class LinkedList<T> {
         Node next;
 
         Node(T item) {
-            this.item = item;
-            next = null;
+            this(item, null);
         }
+
+        Node(T item, Node next) {
+            this.item = item;
+            this.next = next;
+        }
+
     }
 }
