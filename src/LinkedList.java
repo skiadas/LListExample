@@ -29,10 +29,6 @@ public class LinkedList<T> {
     }
 
     public T get(int i) {
-        if (i < 0) {
-            throw new IndexOutOfBoundsException();
-        }
-
         return nodeAtIndex(i).getItem();
     }
 
@@ -64,6 +60,10 @@ public class LinkedList<T> {
     }
 
     private Node nodeAtIndex(int i) {
+        if (i < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+
         Node node = firstNode();
         while (i > 0) {
             i--;
