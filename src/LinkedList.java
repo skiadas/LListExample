@@ -30,13 +30,8 @@ public class LinkedList<T> {
         if (i < 0) {
             throw new IndexOutOfBoundsException();
         }
-        Node node = firstNode();
-        while (i > 0) {
-            i--;
-            node = node.getNext();
-        }
 
-        return node.getItem();
+        return nodeAtIndex(i).getItem();
     }
 
     public void removeFront() {
@@ -59,6 +54,15 @@ public class LinkedList<T> {
             node = node.getNext();
         }
         return count;
+    }
+
+    private Node nodeAtIndex(int i) {
+        Node node = firstNode();
+        while (i > 0) {
+            i--;
+            node = node.getNext();
+        }
+        return node;
     }
 
     private boolean isOneElementList() {
