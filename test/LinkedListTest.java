@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LinkedListTest {
@@ -95,6 +97,13 @@ class LinkedListTest {
         assertThrows(IndexOutOfBoundsException.class, () -> { oneElemList.get(1); });
         assertThrows(IndexOutOfBoundsException.class, () -> { oneElemList.get(2); });
         assertThrows(IndexOutOfBoundsException.class, () -> { oneElemList.get(-1); });
+    }
+
+    @Test
+    void testRemovingFromEmptyList() {
+        LinkedList<String> emptyList = emptyList();
+        assertThrows(NoSuchElementException.class, () -> { emptyList.removeFront(); });
+        assertThrows(NoSuchElementException.class, () -> { emptyList.removeBack(); });
     }
 
     private LinkedList<String> emptyList() {

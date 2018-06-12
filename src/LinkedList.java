@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+
 public class LinkedList<T> {
     private final Node nullNode = new NullNode();
     private Node head = nullNode;
@@ -35,11 +37,16 @@ public class LinkedList<T> {
     }
 
     public void removeFront() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
         setHead(firstNode().getNext());
     }
 
     public void removeBack() {
-        if (isOneElementList()) {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        } else if (isOneElementList()) {
             setHead(nullNode());
         } else {
             nextToLastNode().setNext(nullNode());
